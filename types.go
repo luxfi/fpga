@@ -18,12 +18,12 @@ import (
 type Backend string
 
 const (
-	BackendNone       Backend = "None"
-	BackendAMDVersal  Backend = "AMDVersal"
-	BackendAWSF2      Backend = "AWSF2"
+	BackendNone         Backend = "None"
+	BackendAMDVersal    Backend = "AMDVersal"
+	BackendAWSF2        Backend = "AWSF2"
 	BackendIntelStratix Backend = "IntelStratix"
-	BackendXilinxAlveo Backend = "XilinxAlveo"
-	BackendSimulation Backend = "Simulation"
+	BackendXilinxAlveo  Backend = "XilinxAlveo"
+	BackendSimulation   Backend = "Simulation"
 )
 
 // DeviceType represents specific FPGA device models
@@ -33,26 +33,26 @@ const (
 	DeviceUnknown DeviceType = iota
 
 	// AMD Versal family
-	DeviceVersalVE2802  // AI Edge - 400 AI engines
-	DeviceVersalVPK180  // Premium - 304 AI engines, 112G
-	DeviceVersalVPK280  // Premium - 400 AI engines, 112G
-	DeviceVersalVH1782  // HBM series - 400 AI engines, HBM
+	DeviceVersalVE2802 // AI Edge - 400 AI engines
+	DeviceVersalVPK180 // Premium - 304 AI engines, 112G
+	DeviceVersalVPK280 // Premium - 400 AI engines, 112G
+	DeviceVersalVH1782 // HBM series - 400 AI engines, HBM
 
 	// AWS F2 family (Xilinx VU9P based)
-	DeviceAWSF2XLarge    // 1 FPGA, 8 vCPUs
-	DeviceAWSF22XLarge   // 1 FPGA, 8 vCPUs, 244GB RAM
-	DeviceAWSF24XLarge   // 2 FPGAs, 16 vCPUs
-	DeviceAWSF216XLarge  // 8 FPGAs, 64 vCPUs
+	DeviceAWSF2XLarge   // 1 FPGA, 8 vCPUs
+	DeviceAWSF22XLarge  // 1 FPGA, 8 vCPUs, 244GB RAM
+	DeviceAWSF24XLarge  // 2 FPGAs, 16 vCPUs
+	DeviceAWSF216XLarge // 8 FPGAs, 64 vCPUs
 
 	// Intel Stratix family
-	DeviceStratix10GX   // High-performance
-	DeviceStratix10MX   // Mid-range with HBM
-	DeviceAgilex7       // Latest generation
+	DeviceStratix10GX // High-performance
+	DeviceStratix10MX // Mid-range with HBM
+	DeviceAgilex7     // Latest generation
 
 	// Xilinx Alveo family
-	DeviceAlveoU200     // Data center card
-	DeviceAlveoU250     // Data center card with HBM
-	DeviceAlveoU280     // HBM enabled
+	DeviceAlveoU200 // Data center card
+	DeviceAlveoU250 // Data center card with HBM
+	DeviceAlveoU280 // HBM enabled
 )
 
 // Config holds FPGA accelerator configuration
@@ -64,11 +64,11 @@ type Config struct {
 	PCIeSlot   string
 
 	// Hardware resources
-	AIEngines     int   // AMD Versal AI engines
-	DSPSlices     int   // DSP slice count
-	DDRChannels   int   // DDR memory channels
-	DDRSize       int64 // DDR memory size in bytes
-	HBMSize       int64 // HBM memory size in bytes
+	AIEngines   int   // AMD Versal AI engines
+	DSPSlices   int   // DSP slice count
+	DDRChannels int   // DDR memory channels
+	DDRSize     int64 // DDR memory size in bytes
+	HBMSize     int64 // HBM memory size in bytes
 
 	// Clock configuration
 	KernelClockMHz int // Main kernel clock
@@ -79,9 +79,9 @@ type Config struct {
 	DMABufferSize int64
 
 	// Network configuration
-	Enable100G     bool
-	EnableRDMA     bool
-	EnableDPDK     bool
+	Enable100G bool
+	EnableRDMA bool
+	EnableDPDK bool
 
 	// AWS-specific
 	AGFI         string // Amazon FPGA Image ID
@@ -96,11 +96,11 @@ type Config struct {
 // DefaultConfig returns default FPGA configuration
 func DefaultConfig() Config {
 	return Config{
-		Backend:        BackendSimulation,
-		KernelClockMHz: 250,
-		MemoryClockMHz: 300,
-		DMAChannels:    4,
-		DMABufferSize:  16 * 1024 * 1024, // 16MB
+		Backend:         BackendSimulation,
+		KernelClockMHz:  250,
+		MemoryClockMHz:  300,
+		DMAChannels:     4,
+		DMABufferSize:   16 * 1024 * 1024, // 16MB
 		EnableZKKernels: true,
 	}
 }
@@ -124,13 +124,13 @@ type Stats struct {
 	DMABandwidthGbps  float64
 
 	// Resource utilization
-	AIEngineUtil   float64 // AMD Versal
-	DSPUtil        float64
-	BRAMUtil       float64
-	MemoryUsedMB   int64
+	AIEngineUtil float64 // AMD Versal
+	DSPUtil      float64
+	BRAMUtil     float64
+	MemoryUsedMB int64
 
 	// Power and thermal
-	PowerWatts       float64
+	PowerWatts         float64
 	TemperatureCelsius float64
 
 	// Time
@@ -183,13 +183,13 @@ const (
 	KernelFHEBootstrap // FHE bootstrapping
 
 	// DEX kernels
-	KernelOrderMatch   // Order matching engine
-	KernelRiskCheck    // Risk checking
-	KernelOrderBook    // Order book management
+	KernelOrderMatch // Order matching engine
+	KernelRiskCheck  // Risk checking
+	KernelOrderBook  // Order book management
 
 	// Common kernels
-	KernelDMA          // DMA transfer
-	KernelMemcpy       // Memory copy
+	KernelDMA    // DMA transfer
+	KernelMemcpy // Memory copy
 )
 
 // Kernel represents an FPGA compute kernel
@@ -253,19 +253,19 @@ type Capabilities struct {
 	MaxDMABufferSize  int64
 
 	// Resources
-	LogicCells    int
-	DSPSlices     int
-	BRAMBlocks    int
-	URAMBlocks    int
-	AIEngines     int // AMD Versal
-	DDRChannels   int
-	DDRSizeGB     int
-	HBMSizeGB     int
+	LogicCells  int
+	DSPSlices   int
+	BRAMBlocks  int
+	URAMBlocks  int
+	AIEngines   int // AMD Versal
+	DDRChannels int
+	DDRSizeGB   int
+	HBMSizeGB   int
 
 	// PCIe
-	PCIeGen    int
-	PCIeLanes  int
-	PCIeGbps   float64
+	PCIeGen   int
+	PCIeLanes int
+	PCIeGbps  float64
 
 	// Network
 	Has100GEthernet bool

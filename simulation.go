@@ -17,11 +17,11 @@ func init() {
 // SimulationAccelerator provides a software simulation of FPGA operations
 // Used for development, testing, and systems without FPGA hardware
 type SimulationAccelerator struct {
-	config   Config
-	stats    Stats
-	kernels  map[KernelType]*Kernel
-	buffers  []*DMABuffer
-	mu       sync.RWMutex
+	config  Config
+	stats   Stats
+	kernels map[KernelType]*Kernel
+	buffers []*DMABuffer
+	mu      sync.RWMutex
 
 	initialized bool
 	startTime   time.Time
